@@ -8,7 +8,8 @@ tidyverse, readxl: wczytywanie, manipulacja danymi i podstawowa wizualizacja.
 
 corrplot: wizualizacja macierzy korelacji.
 
-## Analiza opiera się na zbiorze danych model_grawitacyjny.xlsx.
+## Analiza opiera się na opracowaniu własnym danych CEPII, WorldBank, WTO OMC oraz WITS: 
+https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=6 , https://data.worldbank.org/indicator , https://rtais.wto.org/UI/PublicMaintainRTAHome.aspx, https://wits.worldbank.org/default.aspx 
 
 # Kluczowe zmienne:
 
