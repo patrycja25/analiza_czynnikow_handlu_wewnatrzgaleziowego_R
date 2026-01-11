@@ -1,6 +1,6 @@
 # analiza_czynnikow_handlu_wewnatrzgaleziowego
 
-# Skrypt w języku R analizuje determinanty handlu wewnątrzgałęziowego (mierzonego indeksem Grubela-Lloyda) przy użyciu zmiennych typowych dla modelu grawitacyjnego, badając wpływ odległości, wielkości rynku, zamożności oraz porozumień handlowych na intensywność wymiany.
+# Skrypt w języku R zawiera analizę wstępną determinant handlu wewnątrzgałęziowego (mierzonego indeksem Grubela-Lloyda) przy użyciu zmiennych typowych dla modelu grawitacyjnego, badając wpływ odległości, wielkości rynku, zamożności oraz porozumień handlowych na intensywność wymiany.
 
 # Wymagane biblioteki:
 
@@ -12,30 +12,24 @@ corrplot: wizualizacja macierzy korelacji.
 
 # Kluczowe zmienne:
 
-zagregowany_GL: Indeks Grubela-Lloyda (zmienna zależna, mierząca poziom handlu wewnątrzgałęziowego).
+- odległość jako średnia ważona odległości między największymi aglomeracjami obu krajów. Wagami w tym wyliczeniu jest udział ludności danego miasta w całkowitej populacji kraju, 
 
-odległość: Dystans geograficzny między partnerami handlowymi (w analizie używany logarytm).
+- podobieństwo liczone jako wartości bezwzględną różnicy PKB per capita dla pary krajów raportujących i partnerskich, 
 
-podobieństwo: Wskaźnik podobieństwa gospodarczego (np. struktur PKB).
+- zamożność liczona jako średnie PKB per capita dla pary krajów raportujących i partnerskich, 
 
-zamożność: Poziom zamożności partnerów handlowych.
+- wielkość rynku liczona jako średnie PKB dla pary krajów raportujących i partnerskich, 
 
-wielkość_rynku: Rozmiar rynku (zwykle mierzony PKB).
+- RTA jako zmienna zero-jedynkowa przyjmująca wartość 1, gdy oba kraje należą do tej samej strefy wolnego handlu lub posiadają wiążącą umowę handlową oraz 0 w przeciwnym przypadku, 
 
-RTA (Regional Trade Agreement): Zmienna binarna (0/1) oznaczająca istnienie regionalnego porozumienia handlowego.
+- wspólny język jako zmienna zero-jedynkowa przyjmująca wartość 1, gdy kraje posiadają przynajmniej jeden wspólny język urzędowy oraz 0 w przeciwnym przypadku,  
+
+- wspólna granica jako zmienna zero-jedynkowa przyjmująca wartość 1, gdy kraje sąsiadują ze sobą lądowo, oraz 0 w przeciwnym przypadku, 
 
 # Analiza danych i wnioski wizualne:
 
-Przeprowadzono wstępną analizę danych: 
+We wstępnej analizie danych wykonano trzy wykresy, w celu sprawdzenia zależności pomiędzy zmiennymi objaśniającymi, a zmienną objaśniano. Ustalono (Wykres 1.) ujemną korelację pomiędzy odległością, a intensywnością handlu wewnątrzgałęziowego. Im większa odległość między partnerami handlowymi, tym niższa wartość zagregowanego wskaźnika Grubela-Lloyda. Jest to zgodne z teorią grawitacji w handlu międzynarodowym. Koszty transportu i bariery informacyjne rosną wraz z odległością, co zniechęca do handlu wewnątrzgałęziowego.  
 
-Relacja z odległością: Wykres punktowy z linią trendu wskazuje na ujemną korelację między logarytmem odległości a indeksem GL. Oznacza to, że im dalej znajdują się kraje, tym mniejszy udział handlu wewnątrzgałęziowego (zgodnie z teorią grawitacji).
+Ustalono (Wykres 2.), że jest to najsilniej negatywna korelacja dla badanej zmiennej objaśnianej w tym zestawieniu (-0,36). Ponadto wywnioskowano słabą ujemną korelację między wielkością rynku, a zmienną objaśnianą (-0,20) oraz podobieństwem, a zmienną zależną (–0,17). Równocześnie zaobserwowano brak istotnej korelacji liniowej między zamożnością, a wartość zagregowanego wskaźnika Grubela-Lloyda w badanej próbie. Z obserwacji korelacji zmiennych niezależnych ustalono silną dodatnią korelację między podobieństwem, a wielkością rynku (0,61) oraz odległością, a wielkością rynku (0,57).  
 
-Macierz korelacji:
-
-Silna dodatnia korelacja między zagregowany_GL a wielkość_rynku (większe rynki sprzyjają specjalizacji wewnątrzgałęziowej).
-
-Potwierdzenie ujemnej korelacji z odległością (-0.36).
-
-Wpływ porozumień handlowych (RTA): Wykres pudełkowy (boxplot) wyraźnie pokazuje, że kraje posiadające porozumienie handlowe (RTA = 1) charakteryzują się wyższą medianą indeksu GL oraz mniejszym rozrzutem wyników w dolnych kwartylach w porównaniu do krajów bez umów.
-
-Rozkład zmiennej: Histogram indeksu GL wskazuje na rozkład multimodalny, co sugeruje zróżnicowanie w strukturze handlu analizowanych krajów i może wymagać zastosowania metod estymacji odpornej (biblioteki robust, MASS załadowane w skrypcie).
+Ponadto ustalono, że (Wykres 3.) istnienie Regionalnych Porozumień Handlowych (RTA) sprzyja wyższemu poziomowi handlu wewnątrzgałęziowego. Zniesienie ceł i barier w ramach RTA ułatwia wymianę podobnych produktów. 
